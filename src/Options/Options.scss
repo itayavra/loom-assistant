@@ -1,0 +1,13 @@
+.root {
+  padding: 50px;
+  display: flex;
+
+  .options-panel {
+    margin-bottom: 0;
+  }
+
+  .gif-url {
+    position: absolute;
+    max-height: 100%;
+  }
+}
