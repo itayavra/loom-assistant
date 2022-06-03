@@ -1,13 +1,12 @@
-/* global chrome */
-import React, { ChangeEvent, useEffect, useState } from 'react';
-import './Options.scss';
+import React, { ChangeEvent, useEffect, useState } from "react";
+import "./Options.scss";
 
 const Options: React.FC = () => {
   const [gifUrl, setGifUrl] = useState<string>();
   const [isFormPristine, setIsFormPristine] = useState<boolean>(true);
 
   useEffect(() => {
-    chrome.storage.sync.get(['gifUrl'], function ({ gifUrl }: { gifUrl: string }) {
+    chrome.storage.sync.get(["gifUrl"], ({ gifUrl }: any) => {
       setGifUrl(gifUrl);
     });
   }, []);
@@ -40,9 +39,19 @@ const Options: React.FC = () => {
               <form>
                 <div className="form-group">
                   <label>Gif URL:</label>
-                  <input className="form-control" value={gifUrl} onChange={onChange} placeholder="Enter gif URL" />
+                  <input
+                    className="form-control"
+                    value={gifUrl}
+                    onChange={onChange}
+                    placeholder="Enter gif URL"
+                  />
                 </div>
-                <button type="submit" className="btn btn-primary" onClick={onSave} disabled={isFormPristine}>
+                <button
+                  type="submit"
+                  className="btn btn-primary"
+                  onClick={onSave}
+                  disabled={isFormPristine}
+                >
                   Save
                 </button>
               </form>
