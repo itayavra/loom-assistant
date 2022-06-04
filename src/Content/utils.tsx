@@ -12,7 +12,12 @@ export const addButton = (element: HTMLElement) => {
   render(buttonElement, containerElement);
 };
 
-export const startScript = (onDomChange: (observer: MutationObserver, mutationRecords: MutationRecord[]) => void) => {
+export const startScript = (
+  onDomChange: (
+    observer: MutationObserver,
+    mutationRecords: MutationRecord[]
+  ) => void
+) => {
   const observer = new MutationObserver(async (mutationsList) => {
     onDomChange(observer, mutationsList);
   });

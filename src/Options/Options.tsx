@@ -1,12 +1,12 @@
-import React, { ChangeEvent, useEffect, useState } from "react";
-import "./Options.scss";
+import React, { ChangeEvent, useEffect, useState } from 'react';
+import './Options.scss';
 
 const Options: React.FC = () => {
   const [gifUrl, setGifUrl] = useState<string>();
   const [isFormPristine, setIsFormPristine] = useState<boolean>(true);
 
   useEffect(() => {
-    chrome.storage.sync.get(["gifUrl"], ({ gifUrl }: any) => {
+    chrome.storage.sync.get(['gifUrl'], ({ gifUrl }: any) => {
       setGifUrl(gifUrl);
     });
   }, []);
@@ -30,36 +30,40 @@ const Options: React.FC = () => {
     <>
       <div className="root row">
         <div className="col-lg-6">
-          <div className="panel panel-default options-panel">
-            <div className="panel-heading">
-              <h3 className="panel-title">Options:</h3>
+          <div className="card options-panel">
+            <div className="card-header">
+              <h3 className="card-title">Options</h3>
             </div>
 
-            <div className="panel-body">
+            <div className="card-body">
               <form>
-                <div className="form-group">
-                  <label>Gif URL:</label>
-                  <input
-                    className="form-control"
-                    value={gifUrl}
-                    onChange={onChange}
-                    placeholder="Enter gif URL"
-                  />
+                <div className="row g-3">
+                  <div className="col-lg-12">
+                    <label className="form-label">Gif URL:</label>
+                    <input
+                      className="form-control"
+                      value={gifUrl}
+                      onChange={onChange}
+                      placeholder="Enter gif URL"
+                    />
+                  </div>
+                  <div className="col-lg-12">
+                    <button
+                      type="submit"
+                      className="btn btn-primary"
+                      onClick={onSave}
+                      disabled={isFormPristine}
+                    >
+                      Save
+                    </button>
+                  </div>
                 </div>
-                <button
-                  type="submit"
-                  className="btn btn-primary"
-                  onClick={onSave}
-                  disabled={isFormPristine}
-                >
-                  Save
-                </button>
               </form>
             </div>
           </div>
         </div>
 
-        <div className="col-lg-6">
+        <div className="col-lg-6 gif-container">
           <img className="gif-url" src={gifUrl} />
         </div>
       </div>

@@ -1,4 +1,3 @@
-/* global document */
 import { addButton, startScript } from './utils';
 import { LOOM_ASSISTANT_CLASS } from './CopyButton';
 

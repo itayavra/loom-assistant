@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from "react";
-export const LOOM_ASSISTANT_CLASS = "loom-assistant-class";
-import "./content.styles.scss";
+import React, { useEffect, useState } from 'react';
+export const LOOM_ASSISTANT_CLASS = 'loom-assistant-class';
+import './content.styles.scss';
 
 export function CopyButton({ element }: { element: HTMLElement }) {
   const buttonClass = `${element.className} ${LOOM_ASSISTANT_CLASS}`;
-  const defaultButtonText = "Copy gif";
+  const defaultButtonText = 'Copy gif';
   const [buttonText, setButtonText] = useState<string>(defaultButtonText);
   const [gifUrl, setGifUrl] = useState<string>();
 
   useEffect(() => {
-    chrome.storage.sync.get(["gifUrl"], ({ gifUrl }: any) => {
+    chrome.storage.sync.get(['gifUrl'], ({ gifUrl }: any) => {
       setGifUrl(gifUrl);
     });
   }, []);
@@ -24,10 +24,10 @@ export function CopyButton({ element }: { element: HTMLElement }) {
     </a>
   `;
     document.oncopy = function (event) {
-      event.clipboardData?.setData("text/html", gitHtml);
+      event.clipboardData?.setData('text/html', gitHtml);
       event.preventDefault();
     };
-    document.execCommand("copy", false);
+    document.execCommand('copy', false);
   };
 
   const onClick = () => {
@@ -36,7 +36,7 @@ export function CopyButton({ element }: { element: HTMLElement }) {
     }
 
     copyGif();
-    setButtonText("Copied!");
+    setButtonText('Copied!');
     setTimeout(() => {
       setButtonText(defaultButtonText);
     }, 2000);
@@ -44,7 +44,7 @@ export function CopyButton({ element }: { element: HTMLElement }) {
 
   return (
     <div
-      title={gifUrl ? "" : "Please set a gif URL in the Loom Assistant options"}
+      title={gifUrl ? '' : 'Please set a gif URL in the Loom Assistant options'}
     >
       <button className={buttonClass} disabled={!gifUrl} onClick={onClick}>
         <span>{buttonText}</span>
