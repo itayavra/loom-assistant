@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
 export const LOOM_ASSISTANT_CLASS = 'loom-assistant-class';
-import './content.styles.scss';
+// @ts-ignore
+import { ReactComponent as Copy } from './Copy.svg';
+import './CopyButton.scss';
 
 export function CopyButton({ element }: { element: HTMLElement }) {
   const buttonClass = `${element.className} ${LOOM_ASSISTANT_CLASS}`;
-  const defaultButtonText = 'Copy gif';
-  const [buttonText, setButtonText] = useState<string>(defaultButtonText);
   const [gifUrl, setGifUrl] = useState<string>();
+  const [copyInProgress, setCopyInProgress] = useState<boolean>(false);
 
   useEffect(() => {
     chrome.storage.sync.get(['gifUrl'], ({ gifUrl }: any) => {
@@ -35,10 +36,11 @@ export function CopyButton({ element }: { element: HTMLElement }) {
       return;
     }
 
+    setCopyInProgress(true);
     copyGif();
-    setButtonText('Copied!');
+
     setTimeout(() => {
-      setButtonText(defaultButtonText);
+      setCopyInProgress(false);
     }, 2000);
   };
 
@@ -47,7 +49,10 @@ export function CopyButton({ element }: { element: HTMLElement }) {
       title={gifUrl ? '' : 'Please set a gif URL in the Loom Assistant options'}
     >
       <button className={buttonClass} disabled={!gifUrl} onClick={onClick}>
-        <span>{buttonText}</span>
+        <div className="icon-container">
+          <Copy />
+        </div>
+        <span>{copyInProgress ? 'Copied!' : 'Copy gif'}</span>
       </button>
     </div>
   );

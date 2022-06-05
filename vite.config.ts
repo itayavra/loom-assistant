@@ -1,6 +1,7 @@
 import { crx, defineManifest } from '@crxjs/vite-plugin';
 import react from '@vitejs/plugin-react';
 import { defineConfig } from 'vite';
+import svgr from '@svgr/rollup';
 
 const manifest = defineManifest({
   manifest_version: 3,
@@ -18,5 +19,5 @@ const manifest = defineManifest({
 });
 
 export default defineConfig({
-  plugins: [react(), crx({ manifest })],
+  plugins: [svgr(), react(), crx({ manifest })],
 });
