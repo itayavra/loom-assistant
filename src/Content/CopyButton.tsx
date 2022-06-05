@@ -52,7 +52,7 @@ export function CopyButton({ element }: { element: HTMLElement }) {
         <div className="icon-container">
           <Copy />
         </div>
-        <span>{copyInProgress ? 'Copied!' : 'Copy gif'}</span>
+        <span>{copyInProgress ? 'Copied!' : 'Copy with gif'}</span>
       </button>
     </div>
   );

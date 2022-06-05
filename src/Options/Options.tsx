@@ -39,12 +39,12 @@ const Options: React.FC = () => {
               <form>
                 <div className="row g-3">
                   <div className="col-lg-12">
-                    <label className="form-label">Gif URL:</label>
+                    <label className="form-label">Gif address:</label>
                     <input
                       className="form-control"
                       value={gifUrl}
                       onChange={onChange}
-                      placeholder="Enter gif URL"
+                      placeholder="Enter gif address"
                     />
                   </div>
                   <div className="col-lg-12">

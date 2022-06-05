@@ -3,12 +3,12 @@ import { render } from 'react-dom';
 import { CopyButton } from './CopyButton';
 
 export const addButton = (element: HTMLElement) => {
-  const containerClass = element.parentElement?.className;
-  const buttonElement = <CopyButton element={element} />;
-
+  const containerClass = element.parentElement?.className || '';
   const containerElement = document.createElement('div');
-  containerElement.setAttribute('class', containerClass || '');
+  containerElement.setAttribute('class', containerClass);
   element.parentElement?.insertAdjacentElement('beforebegin', containerElement);
+
+  const buttonElement = <CopyButton element={element} />;
   render(buttonElement, containerElement);
 };
 
