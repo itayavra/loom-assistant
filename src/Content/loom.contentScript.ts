@@ -6,7 +6,7 @@ const injectionNeeded = () => {
 };
 
 const getButtonElement = () => {
-  return document.querySelector('span>[data-testid="share-modal-button"]');
+  return document.querySelector('[data-testid="share-modal-button"]');
 };
 
 startScript(async (observer) => {
@@ -15,6 +15,8 @@ startScript(async (observer) => {
   }
 
   const button = getButtonElement();
+  console.log('share-modal-button:', button);
+
   if (!button) {
     return;
   }

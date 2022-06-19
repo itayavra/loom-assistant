@@ -5,7 +5,7 @@ import { ReactComponent as Copy } from './Copy.svg';
 import './CopyButton.scss';
 
 export function CopyButton({ element }: { element: HTMLElement }) {
-  const buttonClass = `${element.className} ${LOOM_ASSISTANT_CLASS}`;
+  const buttonClass = `${element.className}`;
   const [gifUrl, setGifUrl] = useState<string>();
   const [copyInProgress, setCopyInProgress] = useState<boolean>(false);
 
@@ -46,6 +46,7 @@ export function CopyButton({ element }: { element: HTMLElement }) {
 
   return (
     <div
+      className={`${LOOM_ASSISTANT_CLASS}`}
       title={gifUrl ? '' : 'Please set a gif URL in the Loom Assistant options'}
     >
       <button className={buttonClass} disabled={!gifUrl} onClick={onClick}>
